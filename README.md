@@ -1,0 +1,1 @@
+Crie um arquivo .env na raiz com as variáveis: API_KEY, API_BASE_URL.
