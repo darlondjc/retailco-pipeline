@@ -4,7 +4,7 @@ Pipeline de ingestão em Python para coleta de dados da API de dados, com foco e
 
 ## Fonte de dados
 
-A fonte escolhida é a API de dados do Portal da Transparência acessada por rotas sob o prefixo `/api-de-dados/`.
+A fonte escolhida é a API de dados do [Portal da Transparência](https://api.portaldatransparencia.gov.br) acessada por rotas sob o prefixo `/api-de-dados/`.
 
 No estado atual do projeto, o pipeline consome o endpoint de permissionários com paginação:
 
