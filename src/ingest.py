@@ -11,6 +11,15 @@ load_dotenv() # carrega .env para os.environ
 
 # Controle de protocolo HTTP
 def requisitar_resiliente(url: str, params: dict) -> dict:
+    
+    #validações parametros obrigatórios
+    if not url.startswith("/api-de-dados/"):
+        raise ValueError("URL deve começar com /api-de-dados/")
+    if "API_KEY" not in os.environ or "API_BASE_URL" not in os.environ:
+        raise EnvironmentError("Variáveis de ambiente API_KEY e API_BASE_URL são obrigatórias")
+    if "pagina" not in params or not isinstance(params["pagina"], int) or params["pagina"] < 1:
+        raise ValueError("Parâmetro 'pagina' deve ser informado e deve ser um inteiro positivo")
+    
     headers = {"chave-api-dados": os.environ["API_KEY"]}
     url = os.environ["API_BASE_URL"] + url
     #print(f"Requisitando {url} com params {params} ...")
@@ -47,12 +56,9 @@ def requisitar_resiliente(url: str, params: dict) -> dict:
         f"Máximo de {max_tentativas} tentativas atingido para {url}"
     )
 
-def salvar_com_rastreamento(dados: dict, destino: Path) -> None:
-    # Garante a existência da pasta de saída antes de escrever os arquivos
+def salvar_json_schema(dados: dict, destino: Path) -> None:
+    # Garante a existência da pasta de saída para salvar o schema
     destino.parent.mkdir(parents=True, exist_ok=True)
-
-    # Salva o dado bruto
-    destino.write_text(json.dumps(dados, ensure_ascii=False, indent=2))
 
     # Salva metadado de schema ao lado
     if isinstance(dados, dict):
@@ -93,22 +99,9 @@ def carregar_inventario() -> set:
 def salvar_idempotente(
     conteudo, destino: Path, inventario: set
 ) -> int:
-    # Persiste apenas registros ainda não vistos
+    # Persiste registros sem duplicar e reconstrói o raw se ele tiver sido apagado
     registros = conteudo if isinstance(conteudo, list) else [conteudo]
 
-    # Filtra por hash individual de cada registro
-    novos = []
-    for registro in registros:
-        hash_r = hashlib.sha256(
-            json.dumps(registro, sort_keys=True).encode()
-        ).hexdigest()
-        if hash_r not in inventario:
-            novos.append((hash_r, registro))
-
-    if not novos:
-        return 0
-
-    # Carrega registros já salvos em disco para acrescentar, não sobrescrever
     destino.parent.mkdir(parents=True, exist_ok=True)
     if destino.exists():
         existentes = json.loads(destino.read_text())
@@ -117,16 +110,38 @@ def salvar_idempotente(
     else:
         existentes = []
 
-    existentes.extend(registro for _, registro in novos)
-    destino.write_text(json.dumps(existentes, ensure_ascii=False, indent=2))
+    hashes_persistidos = set()
+    registros_persistidos = []
+
+    for registro in existentes:
+        hash_r = hashlib.sha256(
+            json.dumps(registro, sort_keys=True).encode()
+        ).hexdigest()
+        if hash_r not in hashes_persistidos:
+            hashes_persistidos.add(hash_r)
+            registros_persistidos.append(registro)
+
+    novos = 0
+    for registro in registros:
+        hash_r = hashlib.sha256(
+            json.dumps(registro, sort_keys=True).encode()
+        ).hexdigest()
+
+        if hash_r not in inventario:
+            inventario.add(hash_r)
+            novos += 1
+
+        if hash_r not in hashes_persistidos:
+            hashes_persistidos.add(hash_r)
+            registros_persistidos.append(registro)
+
+    destino.write_text(json.dumps(registros_persistidos, ensure_ascii=False, indent=2))
 
     # Atualiza inventário em memória e em disco
-    for hash_r, _ in novos:
-        inventario.add(hash_r)
     PATH_INVENTARIO.parent.mkdir(parents=True, exist_ok=True)
     PATH_INVENTARIO.write_text(json.dumps(list(inventario)))
 
-    return len(novos)
+    return novos
 
 PATH_CONTROLE = Path("data/control/watermark.json")
 def carregar_watermark() -> str:
