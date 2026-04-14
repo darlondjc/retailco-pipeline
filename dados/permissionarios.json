@@ -1,0 +1,407 @@
+[
+  {
+    "id": 248988619,
+    "dataReferencia": "2025-06-01",
+    "orgaoResponsavel": {
+      "nome": "SECRETARIA DE PATRIMONIO DA UNIAO/MP",
+      "codigoSIAFI": "20801"
+    },
+    "dataInicioOcupacao": "2025-05-28",
+    "pessoaPermissionario": {
+      "id": 3818406,
+      "cpfFormatado": "***.555.418-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "ELIANE APARECIDA DA CRUZ",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.555.418-**",
+      "nis": "",
+      "nome": "ELIANE APARECIDA DA CRUZ"
+    },
+    "orgaoPermissionario": "MINISTERIO DA GESTÃO E INOVAÇÃO EM SERV PÚBLICOS",
+    "cargo": "DAS-5 CHEFE DE GABINETE",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248988811,
+    "dataReferencia": "2025-06-01",
+    "orgaoResponsavel": {
+      "nome": "SECRETARIA DE PATRIMONIO DA UNIAO/MP",
+      "codigoSIAFI": "20801"
+    },
+    "dataInicioOcupacao": "2023-04-20",
+    "pessoaPermissionario": {
+      "id": 4013965,
+      "cpfFormatado": "***.974.651-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "KESIA DA SILVA LIMA",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.974.651-**",
+      "nis": "",
+      "nome": "KESIA DA SILVA LIMA"
+    },
+    "orgaoPermissionario": "MINISTÉRIO DESENVOLVIMENTO IND COMÉRCIO EXTERIOR",
+    "cargo": "CCX-215ASSESSOR(A) ESPECIAL",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248989131,
+    "dataReferencia": "2025-06-01",
+    "orgaoResponsavel": {
+      "nome": "SECRETARIA DE PATRIMONIO DA UNIAO/MP",
+      "codigoSIAFI": "20801"
+    },
+    "dataInicioOcupacao": "2023-03-28",
+    "pessoaPermissionario": {
+      "id": 3102794,
+      "cpfFormatado": "***.889.281-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "ANA CAROLINA GOZZER DE MACEDO BRAZ",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.889.281-**",
+      "nis": "",
+      "nome": "ANA CAROLINA GOZZER DE MACEDO BRAZ"
+    },
+    "orgaoPermissionario": "AGENCIA NACIONAL DE AGUAS",
+    "cargo": "CA-2 ASSESSOR(A)",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248989195,
+    "dataReferencia": "2025-06-01",
+    "orgaoResponsavel": {
+      "nome": "MINISTERIO DAS RELACOES EXTERIORES",
+      "codigoSIAFI": "35000"
+    },
+    "dataInicioOcupacao": "2022-07-01",
+    "pessoaPermissionario": {
+      "id": 2616836,
+      "cpfFormatado": "***.547.457-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "CLAUDIA DE ANGELO BARBOSA",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.547.457-**",
+      "nis": "",
+      "nome": "CLAUDIA DE ANGELO BARBOSA"
+    },
+    "orgaoPermissionario": "MINISTÉRIO DAS RELAÇÕES EXTERIORES / MRE",
+    "cargo": "MINISTRA DE SEGUNDA CLASSE",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248989515,
+    "dataReferencia": "2025-06-01",
+    "orgaoResponsavel": {
+      "nome": "SECRETARIA DE PATRIMONIO DA UNIAO/MP",
+      "codigoSIAFI": "20801"
+    },
+    "dataInicioOcupacao": "2021-07-09",
+    "pessoaPermissionario": {
+      "id": 352818048,
+      "cpfFormatado": "***.607.351-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "ELISA CARDOSO BATISTA",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.607.351-**",
+      "nis": "",
+      "nome": "ELISA CARDOSO BATISTA"
+    },
+    "orgaoPermissionario": "MINISTERIO DA AGRICULTURA E PECUARIA",
+    "cargo": "CCX-113COORDENADOR(A) GERAL",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248989707,
+    "dataReferencia": "2025-06-01",
+    "orgaoResponsavel": {
+      "nome": "MINISTERIO DAS RELACOES EXTERIORES",
+      "codigoSIAFI": "35000"
+    },
+    "dataInicioOcupacao": "2025-04-01",
+    "pessoaPermissionario": {
+      "id": 4701801,
+      "cpfFormatado": "***.193.197-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "DANIEL NOGUEIRA LEITAO",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.193.197-**",
+      "nis": "",
+      "nome": "DANIEL NOGUEIRA LEITAO"
+    },
+    "orgaoPermissionario": "MINISTÉRIO DAS RELAÇÕES EXTERIORES / MRE",
+    "cargo": "MINISTRO DE SEGUNDA CLASSE",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248990667,
+    "dataReferencia": "2024-11-01",
+    "orgaoResponsavel": {
+      "nome": "MINISTERIO DA DEFESA",
+      "codigoSIAFI": "52000"
+    },
+    "dataInicioOcupacao": "2018-06-11",
+    "pessoaPermissionario": {
+      "id": 2109986,
+      "cpfFormatado": "***.679.418-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "ANTONIO SILANO DE PAULA FILHO",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.679.418-**",
+      "nis": "",
+      "nome": "ANTONIO SILANO DE PAULA FILHO"
+    },
+    "orgaoPermissionario": "MINISTÉRIO DA DEFESA",
+    "cargo": "CORONEL",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248991179,
+    "dataReferencia": "2024-11-01",
+    "orgaoResponsavel": {
+      "nome": "MINISTERIO DA DEFESA",
+      "codigoSIAFI": "52000"
+    },
+    "dataInicioOcupacao": "2024-02-28",
+    "pessoaPermissionario": {
+      "id": 9310532,
+      "cpfFormatado": "***.572.683-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "STARLY GOMES DE FRANCA",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.572.683-**",
+      "nis": "",
+      "nome": "STARLY GOMES DE FRANCA"
+    },
+    "orgaoPermissionario": "MINISTERIO DA DEFESA",
+    "cargo": "TERCEIRO-SARGENTO",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248992459,
+    "dataReferencia": "2024-11-01",
+    "orgaoResponsavel": {
+      "nome": "MINISTERIO DA DEFESA",
+      "codigoSIAFI": "52000"
+    },
+    "dataInicioOcupacao": "2021-03-02",
+    "pessoaPermissionario": {
+      "id": 2803028,
+      "cpfFormatado": "***.987.250-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "ARACIBIO DA PAIXAO JUNIOR",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.987.250-**",
+      "nis": "",
+      "nome": "ARACIBIO DA PAIXAO JUNIOR"
+    },
+    "orgaoPermissionario": "MINISTÉRIO DA DEFESA",
+    "cargo": "SUBTENENTE",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248993291,
+    "dataReferencia": "2024-11-01",
+    "orgaoResponsavel": {
+      "nome": "MINISTERIO DA DEFESA",
+      "codigoSIAFI": "52000"
+    },
+    "dataInicioOcupacao": "2021-09-06",
+    "pessoaPermissionario": {
+      "id": 4607287,
+      "cpfFormatado": "***.837.767-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "HILQUIAS AUGUSTO SANTIAGO DE SOUSA",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.837.767-**",
+      "nis": "",
+      "nome": "HILQUIAS AUGUSTO SANTIAGO DE SOUSA"
+    },
+    "orgaoPermissionario": "MINISTÉRIO DA DEFESA",
+    "cargo": "CAPITÃO-DE-CORVETA",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248993611,
+    "dataReferencia": "2025-06-01",
+    "orgaoResponsavel": {
+      "nome": "MINISTERIO DAS RELACOES EXTERIORES",
+      "codigoSIAFI": "35000"
+    },
+    "dataInicioOcupacao": "2024-03-01",
+    "pessoaPermissionario": {
+      "id": 605351359,
+      "cpfFormatado": "***.753.177-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "MARCELA RANGEL DOS SANTOS OLIVEIRA",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.753.177-**",
+      "nis": "",
+      "nome": "MARCELA RANGEL DOS SANTOS OLIVEIRA"
+    },
+    "orgaoPermissionario": "MINISTÉRIO DAS RELAÇÕES EXTERIORES / MRE",
+    "cargo": "TERCEIRO SECRETÁRIO",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248994315,
+    "dataReferencia": "2024-11-01",
+    "orgaoResponsavel": {
+      "nome": "MINISTERIO DA DEFESA",
+      "codigoSIAFI": "52000"
+    },
+    "dataInicioOcupacao": "2024-02-16",
+    "pessoaPermissionario": {
+      "id": 2914592,
+      "cpfFormatado": "***.127.268-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "ANTONIO LUIZ MOURA JUNIOR",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.127.268-**",
+      "nis": "",
+      "nome": "ANTONIO LUIZ MOURA JUNIOR"
+    },
+    "orgaoPermissionario": "MINISTERIO DA DEFESA",
+    "cargo": "TENENTE-CORONEL",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248994507,
+    "dataReferencia": "2024-11-01",
+    "orgaoResponsavel": {
+      "nome": "MINISTERIO DA DEFESA",
+      "codigoSIAFI": "52000"
+    },
+    "dataInicioOcupacao": "2022-02-24",
+    "pessoaPermissionario": {
+      "id": 915912,
+      "cpfFormatado": "***.650.896-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "RICARDO HENRIQUE CORREIA DOS SANTOS",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.650.896-**",
+      "nis": "",
+      "nome": "RICARDO HENRIQUE CORREIA DOS SANTOS"
+    },
+    "orgaoPermissionario": "MINISTÉRIO DA DEFESA",
+    "cargo": "TENENTE-CORONEL",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248994891,
+    "dataReferencia": "2025-06-01",
+    "orgaoResponsavel": {
+      "nome": "SECRETARIA DE PATRIMONIO DA UNIAO/MP",
+      "codigoSIAFI": "20801"
+    },
+    "dataInicioOcupacao": "2004-03-18",
+    "pessoaPermissionario": {
+      "id": 907211,
+      "cpfFormatado": "***.687.301-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "GIOVANNI CANDIDO DEMATTE",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.687.301-**",
+      "nis": "",
+      "nome": "GIOVANNI CANDIDO DEMATTE"
+    },
+    "orgaoPermissionario": "MTFCGU",
+    "cargo": "FEX-113 COORDENADOR(A) GERAL",
+    "valorPagoMes": 0.0
+  },
+  {
+    "id": 248995403,
+    "dataReferencia": "2025-06-01",
+    "orgaoResponsavel": {
+      "nome": "SECRETARIA DE PATRIMONIO DA UNIAO/MP",
+      "codigoSIAFI": "20801"
+    },
+    "dataInicioOcupacao": "2003-11-12",
+    "pessoaPermissionario": {
+      "id": 343917719,
+      "cpfFormatado": "***.018.031-**",
+      "cnpjFormatado": "",
+      "numeroInscricaoSocial": "",
+      "nome": "JOSE FERNANDES GOMES",
+      "razaoSocialReceita": "",
+      "nomeFantasiaReceita": "",
+      "tipo": "Pessoa Física"
+    },
+    "permissionario": {
+      "cpfFormatado": "***.018.031-**",
+      "nis": "",
+      "nome": "JOSE FERNANDES GOMES"
+    },
+    "orgaoPermissionario": "MINISTÉRIO DO PLANEJAMENTO, ORÇAMENTO E GESTÃO",
+    "cargo": "FUNCAO INEXISTENTE",
+    "valorPagoMes": 0.0
+  }
+]

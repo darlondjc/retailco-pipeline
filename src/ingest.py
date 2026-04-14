@@ -47,12 +47,60 @@ def requisitar_resiliente(url: str, params: dict) -> dict:
     )
 
 def salvar_com_rastreamento(dados: dict, destino: Path) -> None:
+    # Garante a existência da pasta de saída antes de escrever os arquivos
+    destino.parent.mkdir(parents=True, exist_ok=True)
+
     # Salva o dado bruto
     destino.write_text(json.dumps(dados, ensure_ascii=False, indent=2))
+
     # Salva metadado de schema ao lado
-    schema = {"campos": list(dados.keys()),
-              "n_campos": len(dados),
-              "coletado_em": datetime.now().isoformat()}
+    if isinstance(dados, dict):
+        campos = list(dados.keys())
+        n_itens = None
+    elif isinstance(dados, list):
+        # Quando houver lista de objetos, agrega as chaves encontradas
+        if dados and all(isinstance(item, dict) for item in dados):
+            campos = sorted({chave for item in dados for chave in item.keys()})
+        else:
+            campos = []
+        n_itens = len(dados)
+    else:
+        campos = []
+        n_itens = None
+
+    schema = {
+        "tipo_dado": type(dados).__name__,
+        "campos": campos,
+        "n_campos": len(campos),
+        "n_itens": n_itens,
+        "coletado_em": datetime.now().isoformat(),
+    }
     destino.with_suffix(".schema.json").write_text(
         json.dumps(schema, ensure_ascii=False))
 
+# Salvar com idempotencia usando hash do conteúdo
+import hashlib
+
+PATH_INVENTARIO = Path("data/control/hashes.json")
+def carregar_inventario() -> set:
+    if PATH_INVENTARIO.exists():
+        return set(json.loads(PATH_INVENTARIO.read_text()))
+    return set() # 1a execução: inventário
+
+def salvar_idempotente(
+    conteudo: dict, destino: Path, inventario: set
+) -> bool:
+    # sort_keys=True: essencial — detalhado no próximo slide
+    hash_r = hashlib.sha256(
+        json.dumps(conteudo, sort_keys=True).encode()
+    ).hexdigest()
+
+    if hash_r in inventario:
+        return False # já existe; ignorar
+
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text(json.dumps(conteudo, ensure_ascii=False, indent=2))
+    inventario.add(hash_r)
+    PATH_INVENTARIO.parent.mkdir(parents=True, exist_ok=True)
+    PATH_INVENTARIO.write_text(json.dumps(list(inventario)))
+    return True

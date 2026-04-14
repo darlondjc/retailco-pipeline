@@ -1,18 +1,27 @@
 from pathlib import Path
 
-from src.ingest import requisitar_resiliente, salvar_com_rastreamento
-
-# Viagens
-dados = requisitar_resiliente(
-    url="/api-de-dados/viagens",
-    params={"dataIdaDe": "01/04/2026", "dataIdaAte": "30/04/2026", "dataRetornoDe": "01/04/2026", "dataRetornoAte": "30/04/2026", "codigoOrgao": "02000", "pagina": 1}
+from src.ingest import (
+    salvar_com_rastreamento,
+    carregar_inventario,
+    requisitar_resiliente,
+    salvar_idempotente,
 )
-print(dados)
+
+# Relação de ocupantes de imóveis funcionais (permissionários)
+dados_permissionarios = requisitar_resiliente(
+    url="/api-de-dados/permissionarios",
+    params={"pagina": 1}
+)
+print(dados_permissionarios)
+salvar_com_rastreamento(dados_permissionarios, Path("dados/permissionarios.json"))
+
+# -------------------------------------------------------------------------------------------------------
 
 # Situações dos imóveis funcionais
-dados = requisitar_resiliente(
+dados_situacao_imovel = requisitar_resiliente(
     url="/api-de-dados/situacao-imovel",
     params={}
 )
-print(dados)
-salvar_com_rastreamento(dados, Path("dados/situacao-imovel.json"))
+print(dados_situacao_imovel)
+inventario = carregar_inventario()
+salvar_idempotente(dados_situacao_imovel, Path("dados/situacao-imovel.json"), inventario)
