@@ -1,4 +1,6 @@
-from src.ingest import requisitar_resiliente
+from pathlib import Path
+
+from src.ingest import requisitar_resiliente, salvar_com_rastreamento
 
 # Viagens
 dados = requisitar_resiliente(
@@ -13,3 +15,4 @@ dados = requisitar_resiliente(
     params={}
 )
 print(dados)
+salvar_com_rastreamento(dados, Path("dados/situacao-imovel.json"))
