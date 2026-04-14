@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import datetime
 
 from src.ingest import (
     salvar_json_schema,
@@ -38,10 +39,11 @@ while True:
     pagina += 1
 
 # JSON Schema
-salvar_json_schema(dados_permissionarios, destino_permissionarios)
+referencia_execucao = datetime.now().astimezone().isoformat()
+salvar_json_schema(dados_permissionarios, destino_permissionarios, coletado_em=referencia_execucao)
 
 print(len(dados_permissionarios), "permissionários existentes.")
 print(novos, "novos.")
 
 # Atualiza watermark para controle de atualizações incrementais
-salvar_watermark(carregar_watermark())
+salvar_watermark(carregar_watermark(), atualizado_em=referencia_execucao)

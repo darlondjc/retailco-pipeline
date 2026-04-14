@@ -28,6 +28,10 @@ Essa função aplica:
 
 Com isso, o pipeline falha cedo em erros de configuração e se recupera de falhas transitórias de rede ou indisponibilidade da API.
 
+### Estratégia de paginação
+
+A paginação é feita no lado do cliente. Portanto é feita usando a estratégia de _offset_.
+
 ### Estratégia de carga Full Load
 
 A carga adotada para permissionários é Full Load paginado, devido ao pequeno tamanho da carga de dados (<5G)

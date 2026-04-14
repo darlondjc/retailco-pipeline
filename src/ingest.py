@@ -1,5 +1,6 @@
 import json
 import os
+import random
 import time
 from datetime import datetime
 from pathlib import Path
@@ -20,6 +21,7 @@ def requisitar_resiliente(url: str, params: dict) -> dict:
     if "pagina" not in params or not isinstance(params["pagina"], int) or params["pagina"] < 1:
         raise ValueError("Parâmetro 'pagina' deve ser informado e deve ser um inteiro positivo")
     
+    # chave-api-dados é como a API do Portal da Transparência espera o token de acesso, mas isso pode variar conforme a API alvo
     headers = {"chave-api-dados": os.environ["API_KEY"]}
     url = os.environ["API_BASE_URL"] + url
     #print(f"Requisitando {url} com params {params} ...")
@@ -32,17 +34,17 @@ def requisitar_resiliente(url: str, params: dict) -> dict:
 
         if r.status_code in (401, 403): # ← nunca retentar
             raise PermissionError(
-                f"Falha de auth ({r.status_code}). Revise o token."
+                f"Falha de auth ({r.status_code}). Revise o token ou o nome da chave especificada na API."
             )
 
         if r.status_code == 429:
             # O servidor diz quanto tempo esperar — use esse valor
-            espera = int(r.headers.get("Retry-After", 2 ** tentativa))
+            espera = int(r.headers.get("Retry-After", 2 ** tentativa + random.randint(0, 1)))
             print(f"[429] Rate limit. Aguardando {espera}s .")
             time.sleep(espera)
 
-        elif r.status_code >= 500: # estratégia de backoff exponencial para erros de servidor
-            espera = 2 ** tentativa
+        elif r.status_code >= 500: # estratégia de backoff exponencial com jitter aleatorio para erros de servidor
+            espera = 2 ** tentativa + random.randint(0, 1)
             print(f"[{r.status_code}] Erro servidor. Retry em {espera}s .")
             time.sleep(espera)
         else:
@@ -56,7 +58,7 @@ def requisitar_resiliente(url: str, params: dict) -> dict:
         f"Máximo de {max_tentativas} tentativas atingido para {url}"
     )
 
-def salvar_json_schema(dados: dict, destino: Path) -> None:
+def salvar_json_schema(dados: dict, destino: Path, coletado_em: str | None = None) -> str:
     # Garante a existência da pasta de saída para salvar o schema
     destino.parent.mkdir(parents=True, exist_ok=True)
 
@@ -75,15 +77,19 @@ def salvar_json_schema(dados: dict, destino: Path) -> None:
         campos = []
         n_itens = None
 
+    if coletado_em is None:
+        coletado_em = datetime.now().astimezone().isoformat()
+
     schema = {
         "tipo_dado": type(dados).__name__,
         "campos": campos,
         "n_campos": len(campos),
         "n_itens": n_itens,
-        "coletado_em": datetime.now().isoformat(),
+        "coletado_em": coletado_em,
     }
     destino.with_suffix(".schema.json").write_text(
         json.dumps(schema, ensure_ascii=False))
+    return coletado_em
 
 # Salvar com idempotencia usando hash do conteúdo
 import hashlib
@@ -150,12 +156,15 @@ def carregar_watermark() -> str:
     # Data zero: na 1a execução faz Full Load implícito
     return "1970-01-01T00:00:00"
 
-def salvar_watermark(timestamp: str) -> None:
+def salvar_watermark(timestamp: str, atualizado_em: str | None = None) -> None:
+    if atualizado_em is None:
+        atualizado_em = datetime.now().astimezone().isoformat()
+
     PATH_CONTROLE.parent.mkdir(parents=True, exist_ok=True)
     PATH_CONTROLE.write_text(
         json.dumps({
             "ultimo_registro": timestamp,
-                "atualizado_em": datetime.now().astimezone().isoformat()
+                "atualizado_em": atualizado_em
         })
     )
 
