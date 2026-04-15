@@ -2,22 +2,16 @@ import json
 import os
 import random
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
-from dotenv import load_dotenv
 
-load_dotenv() # carrega .env para os.environ
 
 # Controle de protocolo HTTP
 def requisitar_resiliente(url: str, params: dict) -> dict:
     
     #validações parametros obrigatórios
-    if not url.startswith("/api-de-dados/"):
-        raise ValueError("URL deve começar com /api-de-dados/")
-    if "API_KEY" not in os.environ or "API_BASE_URL" not in os.environ:
-        raise EnvironmentError("Variáveis de ambiente API_KEY e API_BASE_URL são obrigatórias")
     if "pagina" not in params or not isinstance(params["pagina"], int) or params["pagina"] < 1:
         raise ValueError("Parâmetro 'pagina' deve ser informado e deve ser um inteiro positivo")
     
@@ -127,6 +121,8 @@ def salvar_idempotente(
             hashes_persistidos.add(hash_r)
             registros_persistidos.append(registro)
 
+    #cria aquivo de hash do inventario se não existir
+    PATH_INVENTARIO.parent.mkdir(parents=True, exist_ok=True)
     novos = 0
     for registro in registros:
         hash_r = hashlib.sha256(
@@ -144,34 +140,41 @@ def salvar_idempotente(
     destino.write_text(json.dumps(registros_persistidos, ensure_ascii=False, indent=2))
 
     # Atualiza inventário em memória e em disco
-    PATH_INVENTARIO.parent.mkdir(parents=True, exist_ok=True)
     PATH_INVENTARIO.write_text(json.dumps(list(inventario)))
 
     return novos
 
 PATH_CONTROLE = Path("data/control/watermark.json")
+
+def _normalizar_datetime(valor: str) -> datetime:
+    dt = datetime.fromisoformat(valor)
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=timezone.utc)
+    return dt
+
+
 def carregar_watermark() -> str:
     if PATH_CONTROLE.exists():
         return json.loads(PATH_CONTROLE.read_text())["atualizado_em"]
     # Data zero: na 1a execução faz Full Load implícito
-    return "1970-01-01T00:00:00"
+    return "1970-01-01T00:00:00+00:00"
+
 
 def salvar_watermark(timestamp: str, atualizado_em: str | None = None) -> None:
+    ultimo = _normalizar_datetime(timestamp)
+
     if atualizado_em is None:
-        atualizado_em = datetime.now().astimezone().isoformat()
+        atualizado_em = datetime.now(timezone.utc).isoformat()
+
+    coletado = _normalizar_datetime(atualizado_em)
 
     PATH_CONTROLE.parent.mkdir(parents=True, exist_ok=True)
     PATH_CONTROLE.write_text(
         json.dumps({
-            "ultimo_registro": timestamp,
-                "atualizado_em": atualizado_em
+            "ultimo_registro": ultimo.isoformat(),
+            "atualizado_em": coletado.isoformat()
         })
     )
-
-    # Latência do pipeline
-    dados_watermark = json.loads(PATH_CONTROLE.read_text())
-    ultimo = datetime.fromisoformat(dados_watermark["ultimo_registro"])
-    coletado = datetime.fromisoformat(dados_watermark["atualizado_em"])
 
     latencia_min = (coletado - ultimo).total_seconds() / 60
     print(f"Latência do pipeline: {latencia_min:.1f} min")

@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import datetime
-
+from src.util import obter_config_api
 from src.ingest import (
     salvar_json_schema,
     carregar_inventario,
@@ -9,6 +9,8 @@ from src.ingest import (
     carregar_watermark,
     salvar_watermark
 )
+
+obter_config_api()
 
 print("Iniciando ingestão de permissionários...")
 
@@ -21,7 +23,7 @@ pagina = 1
 while True:
     print(f"Lendo página {pagina}...")
     dados_pagina = requisitar_resiliente(
-        url="/api-de-dados/permissionarios",
+        url="/permissionarios",
         params={"pagina": pagina}
     )
 
