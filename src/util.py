@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 
-def obter_config_api():
+def obter_dados_api():
     load_dotenv()  # carrega .env para os.environ
     api_key = os.getenv("API_KEY", "").strip()
     api_base_url = os.getenv("API_BASE_URL", "").strip()

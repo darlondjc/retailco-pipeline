@@ -1,0 +1,83 @@
+---
+title: "Relatório Analítico Final"
+subtitle: "PPGCA 2026 · Mestrado Profissional em Ciência de Dados"
+author: "Nome do Grupo"
+date: today
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    self-contained: true
+execute:
+  echo: false
+  warning: false
+---
+
+## Contexto do Problema
+
+> **TODO:** Descreva o problema de negócio abordado pelo grupo.
+> Qual a fonte de dados? Qual o período analisado?
+
+## Metodologia
+
+Este relatório foi gerado com reprodutibilidade total via `uv run quarto render`.
+O pipeline segue a arquitetura:
+
+```
+Raw (JSON) → Trusted (Parquet) → Mart (DuckDB) → App/Relatório
+```
+
+## Análise Exploratória
+
+```{python}
+import duckdb
+import pandas as pd
+import plotly.express as px
+
+con = duckdb.connect("data/analytics.duckdb", read_only=True)
+df = con.execute("SELECT * FROM fato_principal LIMIT 1000").df()
+con.close()
+
+print(f"Dataset: {len(df)} registros, {df.shape[1]} colunas")
+df.describe()
+```
+
+## Visualizações
+
+```{python}
+# TODO: Adicione seus gráficos aqui
+if "valor" in df.columns and "data" in df.columns:
+    fig = px.line(
+        df.groupby("data")["valor"].sum().reset_index(),
+        x="data", y="valor",
+        title="Evolução Temporal do Valor"
+    )
+    fig.show()
+```
+
+## Modelagem
+
+### Star Schema
+
+> **TODO:** Explique as decisões de modelagem dimensional.
+> Quais são as tabelas Fato e Dimensão? Por quê?
+
+### Feature Store
+
+> **TODO:** Descreva as features criadas para ML.
+> Qual a justificativa estatística para cada uma?
+
+## Conclusões e Recomendações
+
+> **TODO:** Preencha com os achados da análise.
+
+1. **Achado principal:** ...
+2. **Oportunidade identificada:** ...
+3. **Recomendação de ação:** ...
+
+---
+
+*Relatório gerado automaticamente com Quarto + DuckDB + Python.*
+*Reproduzível via: `uv run quarto render reports/report.qmd`*
