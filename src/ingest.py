@@ -239,8 +239,7 @@ def main():
     referencia_execucao = datetime.now().astimezone().isoformat()
     save_json_schema(dados_permissionarios, RAW_FILE, coletado_em=referencia_execucao)
 
-    print(len(dados_permissionarios), "permissionários existentes.")
-    print(novos, "novos.")
+    print(f'{len(dados_permissionarios)} registros coletados e salvos em {RAW_FILE}. Desses, são {novos} registros novos.')
 
     # Atualiza watermark para controle de atualizações incrementais
     watermark_anterior = load_watermark()
